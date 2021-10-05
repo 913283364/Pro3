@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>v-on:keydown</title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			VueJS:<input type="text"  v-on:keydown="fun($event)">
+			<hr/> <!-- onkeydown：敲击键盘任意的键都会触发事件 -->
+			传统JS：<input type="text"  onkeydown="showKeyCode()"/>
+			<hr/>
+			keycode:{{keyCode}}
+		</div>
+	</body>
+
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			data:{
+			    keyCode:0
+			},
+			methods:{
+			    /* $event 它是vue中的事件对象  和我们传统js的event对象是一样的 */
+			    fun:function (event){
+                    var keyCode = event.keyCode;
+                    this.keyCode=keyCode;
+
+                    // 1.每个键盘的按钮都有它对应的键码
+	                // 2.if判断48-57键码就是把键盘按钮限制只能输入数字：0-9
+                    if(keyCode < 96  || keyCode > 105){
+                        // 3.不让键盘的按键起作用
+                        event.preventDefault();
+                    }
+
+                    if(keyCode == 13){
+                        alert("你按的是回车");
+                    }
+				}
+			}
+		});
+
+
+		//传统js的键盘按下事件
+		function showKeyCode(){
+			//event对象和我们的document对象以及window对象是一样的，可以不用定义直接使用
+			//event可以获取keyCode,keyCode获取键盘按钮按下的键码
+			var keyCode = event.keyCode;
+			//if(keyCode < 96  || keyCode > 105){
+				//不让键盘的按键起作用
+				//event.preventDefault();
+			//}
+			 alert(keyCode);
+			 if(event.keyCode == 13){
+			     alert("你按的是回车");
+			 }
+		}
+	</script>
+</html>

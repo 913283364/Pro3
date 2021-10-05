@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <!-- 3.修饰符：trim -->
+    <input type="text" v-model.trim="name">
+    <h3>您输入的名字：{{name}}</h3>
+</div>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data:{
+            name: ''  //默认设置
+        }
+    });
+</script>
+
+</body>
+</html>
